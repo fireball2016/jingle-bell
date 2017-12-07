@@ -5,4 +5,10 @@ var app = express();
 
 app.use(express.static(__dirname + '/public'));
 
+app.get('/angular-files', function (req, res) {
+  res.render('index')
+})
+
+
+
 app.listen(port);

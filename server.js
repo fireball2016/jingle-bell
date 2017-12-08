@@ -7,7 +7,7 @@ const app = express();
 // app.use(express.static(__dirname + '/public'));
 app.use(express.static(path.join(__dirname, 'dist')));
 
-app.get('/angular-files', (req, res) => {
+app.get('*', (req, res) => {
   res.senFile(path.join(__dirname, 'dist/index.html'));
 });
 

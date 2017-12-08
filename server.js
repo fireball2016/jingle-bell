@@ -1,20 +1,18 @@
 const express = require('express');
-const port = process.env.PORT;
-
-var app = express();
+// const bodyParser = require('body-parser');
+const path = require('path');
+const http = require('http');
+const app = express();
 
 app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, 'dist')));
 
-app.get('/', function(req, res) {
-  res.render('fuck.html')
-});
-
-app.use(express.static(__dirname + '/angular-files'));
-
-app.get('/angular-files', function (req, res) {
-  res.render('index.html')
+app.get('/angular-files', (req, res) => {
+  res.senFile(path.join(__dirname, 'dist/index.html'));
 });
 
 
-
-app.listen(port);
+const port = process.env.PORT || 8000;
+app.listen(port, () => {
+  console.log(`app fired up on port ${port}`);
+});
